@@ -1,0 +1,26 @@
+# A project translates into one executable or library.
+project:
+
+  device: :CM4
+
+  # List components to use for your application.
+  # A software component is a re-usable unit that may be configurable.
+  components:
+    - component: Device:CubeMX
+
+    - component: CMSIS:CORE
+    - component: CMSIS Driver:GPIO
+    - component: CMSIS Driver:VIO:Board
+
+  # List of source groups and files added to a project or a layer.
+  groups:
+    - group: Documentation
+      files:
+        - file: ../README.md
+    - group: Source Files
+      files:
+        - file: Blinky.c
+  linker:
+    - script:  ./RTE/Device/STM32H745XIHx_CM4/ac6_linker_script.sct.src
+      regions: ./RTE/Device/STM32H745XIHx_CM4/regions_STM32H745I-DISCO.h
+      for-compiler: AC6

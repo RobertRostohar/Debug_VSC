@@ -1,0 +1,112 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ST-Link CM7",
+            "cwd": "${workspaceFolder}",
+            "type": "cortex-debug",
+            "executable": "./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",
+            "loadFiles": [
+                "./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",
+                "./out/Blinky_cm4/STM32H745I-DISCO/Debug/Blinky_cm4.elf",
+            ],
+            "request": "launch",
+            "servertype": "stlink",
+            "interface": "swd",
+            "runToEntryPoint": "main",
+            "svdFile": "${workspaceFolder}/STM32H745_CM7.svd",
+            "v1": false,
+            "showDevDebugOutput": "both",
+            "serverArgs": [
+                "-l", "1",
+                "-m", "0", // Core CM7
+                // "-k",      // connect under reset
+                "-t","-s"  // ST_Link is shared (-t)
+            ],
+        },
+        {
+            "name": "ST-Link CM4",
+            "cwd": "${workspaceFolder}",
+            "type": "cortex-debug",
+            "executable": "./out/Blinky_cm4/STM32H745I-DISCO/Debug/Blinky_cm4.elf",
+            "request": "attach", 
+            "servertype": "stlink",
+            "interface": "swd",
+            "svdFile": "${workspaceFolder}/STM32H745_CM4.svd",
+            "v1": false,
+            "showDevDebugOutput": "both",
+            "serverArgs": [
+                "-l", "1",
+                "-m", "3", // Core CM4
+                "-t", "-s",
+            ],
+        },
+        {
+            /* In this launch config, the CM7 debug is started,
+            then we wait 10s for the M4 to boot. After than,
+            a launch config to attach to the CM4 is started.
+            */
+            "name": "ST-Link CM7+CM4",
+            "cwd": "${workspaceFolder}",
+            "type": "cortex-debug",
+            "executable": "./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",
+            "loadFiles": [
+                "./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",
+                "./out/Blinky_cm4/STM32H745I-DISCO/Debug/Blinky_cm4.elf",
+            ],
+            "request": "launch",
+            "servertype": "stlink",
+            "interface": "swd",
+            // "runToEntryPoint": "main",       // No run to main to let the CM7 reach the start point of the CM4
+            "svdFile": "${workspaceFolder}/STM32H745_CM7.svd",
+            "v1": false,
+            "showDevDebugOutput": "both",
+            "serverArgs": [
+                "-l", "1",
+                "-m", "0", // Core CM7
+                // "-k",      // connect under reset
+                "-t","-s"  // ST_Link is shared (-t)
+            ],
+            "chainedConfigurations": {
+                "enabled": true,
+                "waitOnEvent": "postInit",
+                "detached": true,
+                "delayMs":5000,    // Wait 5s, could be optimized
+                "lifecycleManagedByParent": true,
+                "launches": [ 
+                    {
+                        "name": "ST-Link CM4",
+                        "folder": "${workspaceFolder}"
+                    }
+                ]
+            }
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",
+            "name": "OpenOCD CM7",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [ "openocd.cfg" ],
+            "searchDir": [],
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none"
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "./out/Blinky_cm4/STM32H745I-DISCO/Debug/Blinky_cm4.elf",
+            "name": "OpenOCD CM4",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [ "openocd.cfg" ],
+            "searchDir": [],
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none"
+        }
+    ]
+}
