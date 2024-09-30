@@ -21,6 +21,7 @@
             "request": "launch",
             "type": "cortex-debug",
             "targetId": "stm32l475xg",  // Flashing fails - should be stm32l4r9aiix (not supported)
+            "svdFile": "STM32L4R9.svd",
             "runToEntryPoint": "main",
             "showDevDebugOutput": "raw",
             "servertype": "pyocd"
@@ -34,6 +35,22 @@
             "servertype": "openocd",
             "configFiles": [ "openocd.cfg" ],
             "searchDir": [],
+            "svdFile": "STM32L4R9.svd",
+            "swoConfig": {
+                "enabled": true,
+                "cpuFrequency": 120000000,
+                "swoFrequency":   2000000,
+                "source": "probe",
+                "decoders": [
+                    { 
+                        "type": "console",
+                        "label": "ITM",
+                        "showOnStartup": true,
+                        "port": 0,
+                        "encoding": "ascii"
+                    }
+                ]
+            },
             "runToEntryPoint": "main",
             "showDevDebugOutput": "raw"
         },
@@ -43,6 +60,7 @@
             "name": "Debug with ST-Link",
             "request": "launch",
             "type": "cortex-debug",
+            "svdFile": "STM32L4R9.svd",
             "runToEntryPoint": "main",
             "showDevDebugOutput": "raw",
             "servertype": "stlink"
