@@ -13,6 +13,43 @@
             "cmsisPack": "${command:cmsis-csolution.getTargetPack}",
             "deviceName": "${command:cmsis-csolution.getDeviceName}",
             "processorName": "${command:cmsis-csolution.getProcessorName}"
+        },
+        {
+            "cwd": "${workspaceFolder}",
+            "executable": "${command:cmsis-csolution.getBinaryFiles}",
+            "name": "Cortex-Debug: ST-Link",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "raw",
+            "servertype": "stlink",
+            "serverArgs": [
+                "--frequency", "8000"
+            ],
+
+        },
+        {
+            "cwd": "${workspaceFolder}",
+            "executable": "${command:cmsis-csolution.getBinaryFiles}",
+            "name": "Cortex-Debug: PyOCD",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "raw",
+            "servertype": "pyocd",
+            "targetId": "stm32f767zi"
+        },
+        {
+            "cwd": "${workspaceRoot}",
+            "executable": "${command:cmsis-csolution.getBinaryFiles}",
+            "name": "Cortex-Debug: OpenOCD",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "openocd",
+            "configFiles": [ "openocd.cfg"],
+            "searchDir": [],
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "raw"
         }
     ]
 }
