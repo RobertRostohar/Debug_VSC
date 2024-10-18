@@ -1,0 +1,34 @@
+project:
+
+  processor:
+    trustzone: secure
+
+  packs:
+    - pack: ARM::CMSIS@>=6.0.0-0
+    - pack: ARM::CMSIS-Compiler@>=2.0.0-0
+    - pack: ARM::CMSIS-View
+
+  groups:
+    - group: Documentation
+      files:
+        - file: ../README.md
+
+    - group: Interface
+      files:
+        - file: interface.c
+        - file: tz_context.c
+
+  components:
+    - component: CMSIS:CORE
+
+    - component: CMSIS-Compiler:CORE
+    - component: CMSIS-Compiler:STDERR:Breakpoint
+    - component: CMSIS-Compiler:STDOUT:Breakpoint
+    - component: CMSIS-Compiler:STDIN:Breakpoint
+
+    - component: CMSIS-View:Fault:Storage
+
+    - component: Device:CubeMX
+
+  linker:
+    - script: ../STM32CubeMX/HW/STM32CubeMX/STM32CubeIDE/Secure/STM32U585AIIXQ_FLASH.ld

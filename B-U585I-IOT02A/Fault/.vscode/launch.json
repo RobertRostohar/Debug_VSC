@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "cwd": "${workspaceFolder}",
+            "executable": "./out/Fault_S/HW/Debug/Fault_S.elf",
+            "loadFiles": [
+                "./out/Fault_S/HW/Debug/Fault_S.elf",
+                "./out/Fault_NS/HW/Debug/Fault_NS.elf",
+            ],
+            "symbolFiles":  [
+                "./out/Fault_S/HW/Debug/Fault_S.elf",
+                "./out/Fault_NS/HW/Debug/Fault_NS.elf",
+            ],
+            "name": "Debug with ST-Link",
+            "request": "launch",
+            "type": "cortex-debug",
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none",
+            "servertype": "stlink"
+    ]
+}

@@ -1,0 +1,6 @@
+{
+    "clangd.arguments": [
+        "--compile-commands-dir=d:\\GitHub\\RobertRostohar\\Debug_VSC\\B-U585I-IOT02A\\Fault\\out\\Fault_S\\HW\\Debug",
+        "--compile-commands-dir=d:\\GitHub\\RobertRostohar\\Debug_VSC\\B-U585I-IOT02A\\Fault\\out\\Fault_NS\\HW\\Debug"
+    ]
+}
