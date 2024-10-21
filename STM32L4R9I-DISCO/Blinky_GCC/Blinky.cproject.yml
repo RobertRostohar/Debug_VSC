@@ -28,10 +28,12 @@ project:
     - group: Source Files
       files:
         - file: Blinky.c
-        # - file: retarget_stdio.c
-        #   define:
-        #     - RETARGET_STDIO_UART: 2
+        - file: retarget_stdio.c
+          define:
+            - RETARGET_STDIO_UART: 2
+          for-context: .Release
         - file: retarget_stdio_itm.c
+          for-context: .Debug
 
   linker:
     - script:  ./RTE/Device/STM32L4R9AIIx/ac6_linker_script.sct.src

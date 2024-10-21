@@ -20,11 +20,12 @@
             "name": "Debug with PyOCD",
             "request": "launch",
             "type": "cortex-debug",
-            "targetId": "stm32l475xg",  // Flashing fails - should be stm32l4r9aiix (not supported)
+            "targetId": "STM32L4R9AIIx",
             "svdFile": "STM32L4R9.svd",
             "runToEntryPoint": "main",
             "showDevDebugOutput": "raw",
-            "servertype": "pyocd"
+            "servertype": "pyocd",
+            "serverArgs": [ "--pack=C:/Arm/Packs/.Download/Keil.STM32L4xx_DFP.3.0.0.pack" ]  // Use local installed CMSIS pack
         },
         {
             "cwd": "${workspaceRoot}",
