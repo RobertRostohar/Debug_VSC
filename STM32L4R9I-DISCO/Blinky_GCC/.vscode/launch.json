@@ -15,6 +15,48 @@
             "processorName": "${command:cmsis-csolution.getProcessorName}"
         },
         {
+            "name": "CDT GDB (attach)",
+            "type": "gdbtarget",
+            "request": "attach",
+            "cwd": "${workspaceFolder}",
+            "program": "${command:cmsis-csolution.getBinaryFiles}",
+            "verbose": true,
+            "gdb": "arm-none-eabi-gdb", // Needs to be in path
+            "initCommands": [
+                "load",
+                "monitor reset halt"
+            ],
+            "target": {
+                "host": "localhost",
+                "port": "50000"         // Needs to match the gdb server
+            },
+            // Configuration for Peripheral Inspector
+            "definitionPath": "${command:device-manager.getDevicePack}",
+            "deviceName": "${command:device-manager.getDeviceName}",
+        },
+        {
+            "name": "CDT PyOCD (launch)",
+            "type": "gdbtarget",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${command:cmsis-csolution.getBinaryFiles}",
+            "verbose": true,
+            "gdb": "arm-none-eabi-gdb", // Needs to be in path
+            "initCommands": [
+                "load",
+                "monitor reset halt"
+            ],
+            "target": {
+                "server": "pyocd",
+                // "serverParameters": ["gdbserver"],
+                "serverParameters": ["gdbserver", "--pack=C:/Arm/Packs/Keil/STM32L4xx_DFP/3.0.0"],
+                "port": "3333"
+            },
+            // Configuration for Peripheral Inspector
+            "definitionPath": "${command:device-manager.getDevicePack}",
+            "deviceName": "${command:device-manager.getDeviceName}",
+        },
+        {
             "cwd": "${workspaceFolder}",
             "executable": "${command:cmsis-csolution.getBinaryFiles}",
             "name": "Debug with PyOCD",
