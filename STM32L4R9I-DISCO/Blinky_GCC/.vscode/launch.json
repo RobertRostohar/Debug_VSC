@@ -16,6 +16,9 @@
         },
         {
             "name": "CDT GDB (attach)",
+            // GDB server needs to be running
+            // Running pyOCD:
+            //   pyocd gdbserver --port 50000 --target STM32L4R9AIIx --pack=C:\Arm\Packs\Keil\STM32L4xx_DFP\3.0.0
             "type": "gdbtarget",
             "request": "attach",
             "cwd": "${workspaceFolder}",
