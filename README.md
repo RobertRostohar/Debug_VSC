@@ -10,6 +10,8 @@ Debug with VS Code extensions
 - Debug Probe: on-board ST-Link
 - Debugger:
   - Arm Debugger (VSC extension + backend)
+  - CDT GDB debug adapter (VSC extension + following gdb servers)
+    - pyOCD
   - Cortex-Debug (VSC extension + following gdb servers)
     - PyOCD 
     - OpenOCD (with ITM printf)

@@ -23,7 +23,7 @@
             "request": "attach",
             "cwd": "${workspaceFolder}",
             "program": "${command:cmsis-csolution.getBinaryFiles}",
-            "verbose": true,
+            "verbose": false,
             "gdb": "arm-none-eabi-gdb", // Needs to be in path
             "initCommands": [
                 "load",
@@ -34,8 +34,8 @@
                 "port": "50000"         // Needs to match the gdb server
             },
             // Configuration for Peripheral Inspector
-            "definitionPath": "${command:device-manager.getDevicePack}",
-            "deviceName": "${command:device-manager.getDeviceName}",
+            "definitionPath": "${command:cmsis-csolution.getTargetPack}",
+            "deviceName": "${command:cmsis-csolution.getDeviceName}",
         },
         {
             "name": "CDT PyOCD (launch)",
@@ -43,7 +43,7 @@
             "request": "launch",
             "cwd": "${workspaceFolder}",
             "program": "${command:cmsis-csolution.getBinaryFiles}",
-            "verbose": true,
+            "verbose": false,
             "gdb": "arm-none-eabi-gdb", // Needs to be in path
             "initCommands": [
                 "load",
@@ -51,13 +51,16 @@
             ],
             "target": {
                 "server": "pyocd",
-                // "serverParameters": ["gdbserver"],
-                "serverParameters": ["gdbserver", "--pack=C:/Arm/Packs/Keil/STM32L4xx_DFP/3.0.0"],
+                "serverParameters": [
+                    "gdbserver",
+                     "--target", "${command:cmsis-csolution.getDeviceName}",
+                     "--pack=${env:CMSIS_PACK_ROOT}/Keil/STM32L4xx_DFP/3.0.0"
+                ],
                 "port": "3333"
             },
             // Configuration for Peripheral Inspector
-            "definitionPath": "${command:device-manager.getDevicePack}",
-            "deviceName": "${command:device-manager.getDeviceName}",
+            "definitionPath": "${command:cmsis-csolution.getTargetPack}",
+            "deviceName": "${command:cmsis-csolution.getDeviceName}",
         },
         {
             "cwd": "${workspaceFolder}",
@@ -70,7 +73,7 @@
             "runToEntryPoint": "main",
             "showDevDebugOutput": "raw",
             "servertype": "pyocd",
-            "serverArgs": [ "--pack=C:/Arm/Packs/.Download/Keil.STM32L4xx_DFP.3.0.0.pack" ]  // Use local installed CMSIS pack
+            "serverArgs": [ "--pack=${env:CMSIS_PACK_ROOT}/Keil/STM32L4xx_DFP/3.0.0" ]  // Use local installed CMSIS pack
         },
         {
             "cwd": "${workspaceRoot}",
