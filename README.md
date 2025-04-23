@@ -1,6 +1,17 @@
 # Debug_VSC
 Debug with VS Code extensions
 
+## STM32L4R9I-DISCO/Blinky
+- Example: Standard Blinky
+  - Build type
+    - Debug: printf using ITM
+    - Release: printf using ST-Link VCOM
+- Board: STM32L4R9I-DISCO
+- Debug Probe: on-board ST-Link
+- Debugger:
+  - Arm Debugger (VSC extension + backend)
+  - CMSIS Debugger: pyOCD (launch.json + tasks.json)
+
 ## STM32L4R9I-DISCO/Blinky_GCC
 - Example: Standard Blinky (GCC)
   - Build type
@@ -10,6 +21,7 @@ Debug with VS Code extensions
 - Debug Probe: on-board ST-Link
 - Debugger:
   - Arm Debugger (VSC extension + backend)
+  - CMSIS Debugger: pyOCD
   - CDT GDB debug adapter (VSC extension + following gdb servers)
     - pyOCD
   - Cortex-Debug (VSC extension + following gdb servers)
@@ -22,6 +34,7 @@ Debug with VS Code extensions
 - Board: STM32L496G-DISCO
 - Debug Probe: on board J-Link (converted from ST-Link)
 - Debugger:
+  - CMSIS Debugger: J-Link
   - Cortex-Debug (VSC extension + following gdb servers)
     - J-Link
 
@@ -30,6 +43,7 @@ Debug with VS Code extensions
 - Board: STM32H745I-DISCO (STM32H745 device: Cortex-M7 + Cortex-M4)
 - Debug Probe: on-board ST-Link
 - Debugger:
+  - CMSIS Debugger: pyOCD
   - Cortex-Debug (VSC extension + following gdb servers)
     - ST-Link (one gdb instance per core)
 

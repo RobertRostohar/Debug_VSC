@@ -5,6 +5,41 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "CMSIS Debugger: pyOCD (CM7)",
+            "type": "gdbtarget",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",  // "${command:cmsis-csolution.getBinaryFile}",
+            "gdb": "arm-none-eabi-gdb",
+            "initCommands": [
+                "load ./out/Blinky_cm4/STM32H745I-DISCO/Debug/Blinky_cm4.elf",
+                "load ./out/Blinky_cm7/STM32H745I-DISCO/Debug/Blinky_cm7.elf",
+                "tbreak main"
+            ],
+            "target": {
+                "server": "pyocd",
+                "port": "3333"
+            },
+            "cmsis": {
+                "cbuildRunFile": "${command:cmsis-csolution.getCbuildRunFile}"
+            }
+        },
+        {
+            "name": "CMSIS Debugger: pyOCD (CM4)",
+            "type": "gdbtarget",
+            "request": "attach",
+            "cwd": "${workspaceFolder}",
+            "program": "./out/Blinky_cm4/STM32H745I-DISCO/Debug/Blinky_cm4.elf",  // "${command:cmsis-csolution.getBinaryFile}",
+            "gdb": "arm-none-eabi-gdb",
+            "initCommands": [
+                // "load",
+                "tbreak main"
+            ],
+            "target": {
+                "port": "3334"
+            },
+        },
+        {
             "name": "ST-Link CM7",
             "cwd": "${workspaceFolder}",
             "type": "cortex-debug",

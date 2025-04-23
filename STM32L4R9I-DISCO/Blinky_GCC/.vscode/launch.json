@@ -15,6 +15,25 @@
             "processorName": "${command:cmsis-csolution.getProcessorName}"
         },
         {
+            "name": "CMSIS Debugger: pyOCD",
+            "type": "gdbtarget",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${command:cmsis-csolution.getBinaryFile}",
+            "gdb": "arm-none-eabi-gdb",
+            "initCommands": [
+                "load",
+                "tbreak main"
+            ],
+            "target": {
+                "server": "pyocd",
+                "port": "3333"
+            },
+            "cmsis": {
+                "cbuildRunFile": "${command:cmsis-csolution.getCbuildRunFile}"
+            }
+        },
+        {
             "name": "CDT GDB (attach)",
             // GDB server needs to be running
             // Running pyOCD:
