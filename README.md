@@ -29,6 +29,15 @@ Debug with VS Code extensions
     - OpenOCD (with ITM printf)
     - ST-Link
 
+## STM32L496G-DISCO/Blinky
+- Example: Standard Blinky
+- Board: STM32L496G-DISCO
+- Debug Probe: on board J-Link (converted from ST-Link)
+- Debugger:
+  - CMSIS Debugger: J-Link (launch.json + tasks.json)
+  - Cortex-Debug (VSC extension + following gdb servers)
+    - J-Link
+
 ## STM32L496G-DISCO/Blinky_GCC
 - Example: Standard Blinky (GCC)
 - Board: STM32L496G-DISCO
