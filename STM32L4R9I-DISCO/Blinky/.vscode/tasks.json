@@ -10,7 +10,7 @@
         {
             "label": "CMSIS Load",
             "type": "shell",
-            "command": "pyocd load --cbuild-run ${command:cmsis-csolution.getCbuildRunFile} ${command:cmsis-csolution.getBinaryFile}",
+            "command": "pyocd load --no-reset --cbuild-run ${command:cmsis-csolution.getCbuildRunFile} ${command:cmsis-csolution.getBinaryFile}",
             "problemMatcher": []
         },
         {
@@ -21,8 +21,25 @@
         },
         {
             "label": "CMSIS Load+Run",
+            "dependsOn": [
+                "CMSIS Load",
+                "CMSIS Run"
+            ],
+            "dependsOrder": "sequence",
             "type": "shell",
-            "command": "pyocd load --cbuild-run ${command:cmsis-csolution.getCbuildRunFile} ${command:cmsis-csolution.getBinaryFile} && pyocd gdbserver --cbuild-run ${command:cmsis-csolution.getCbuildRunFile}",
+            "problemMatcher": []
+        },
+        {
+            "label": "CMSIS Load+Debug", 
+            "dependsOn": [
+                "CMSIS Load"
+            ],
+            "dependsOrder": "sequence",
+            "type": "shell",
+            "command": "C:/Keil/UV4/UV4.exe",
+            "args": [
+                "${command:cmsis-csolution.getSolutionFile}"
+            ],
             "problemMatcher": []
         },
         {
