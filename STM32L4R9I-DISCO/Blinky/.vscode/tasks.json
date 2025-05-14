@@ -4,33 +4,39 @@
         {
             "label": "CMSIS Erase",
             "type": "shell",
-            "command": "pyocd erase --chip --cbuild-run ${command:cmsis-csolution.getCbuildRunFile}",
+            "command": [
+                "pyocd erase --probe stlink: --chip --cbuild-run ${command:cmsis-csolution.getCbuildRunFile}"
+            ],
             "problemMatcher": []
         },
         {
             "label": "CMSIS Load",
             "type": "shell",
-            "command": "pyocd load --no-reset --cbuild-run ${command:cmsis-csolution.getCbuildRunFile} ${command:cmsis-csolution.getBinaryFile}",
+            "command": [
+                "pyocd load --probe stlink: --no-reset --cbuild-run ${command:cmsis-csolution.getCbuildRunFile}"
+            ],
             "problemMatcher": []
         },
         {
             "label": "CMSIS Run",
             "type": "shell",
-            "command": "pyocd gdbserver --cbuild-run ${command:cmsis-csolution.getCbuildRunFile}",
+            "command": [
+                "pyocd gdbserver --probe stlink: --persist --reset-run --cbuild-run ${command:cmsis-csolution.getCbuildRunFile}"
+            ],
             "problemMatcher": []
         },
         {
             "label": "CMSIS Load+Run",
+            "type": "shell",
             "dependsOn": [
                 "CMSIS Load",
                 "CMSIS Run"
             ],
             "dependsOrder": "sequence",
-            "type": "shell",
             "problemMatcher": []
         },
         {
-            "label": "CMSIS Load+Debug", 
+            "label": "CMSIS Load+Debug",
             "dependsOn": [
                 "CMSIS Load"
             ],
@@ -41,16 +47,6 @@
                 "${command:cmsis-csolution.getSolutionFile}"
             ],
             "problemMatcher": []
-        },
-        {
-            "type": "arm-debugger.flash",
-            "serialNumber": "${command:device-manager.getSerialNumber}",
-            "program": "${command:arm-debugger.getApplicationFile}",
-            "cmsisPack": "${command:cmsis-csolution.getTargetPack}",
-            "deviceName": "${command:cmsis-csolution.getDeviceName}",
-            "processorName": "${command:cmsis-csolution.getProcessorName}",
-            "problemMatcher": [],
-            "label": "arm-debugger.flash: Flash Device"
         }
     ]
 }
