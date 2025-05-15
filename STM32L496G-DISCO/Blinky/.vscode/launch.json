@@ -13,6 +13,9 @@
                 "monitor reset",
                 "tbreak main"
             ],
+            "customResetCommands": [
+                "monitor reset"
+            ],
             "target": {
                 "server": "JLinkGDBServerCL",
                 "serverParameters": [
@@ -44,6 +47,9 @@
             "gdb": "arm-none-eabi-gdb",
             "initCommands": [
                 ""
+            ],
+            "customResetCommands": [
+                "monitor reset"
             ],
             "target": {
                 "port": "3333"
